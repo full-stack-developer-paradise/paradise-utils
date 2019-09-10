@@ -7,13 +7,16 @@ import pubsub from './utils/pubsub';
 import path from './utils/path';
 
 export const Debounce = debounce;
+export const Throttle = throttle;
+export const PubSub = pubsub;
+export const Path = path;
 
 
 const Utils = {
-    debounce,
-    throttle,
-    pubsub,
-    path
+    debounce: Debounce,
+    throttle: Throttle,
+    pubsub: PubSub,
+    path: Path
 };
 
 export default Utils;

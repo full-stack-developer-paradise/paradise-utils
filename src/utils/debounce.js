@@ -23,8 +23,30 @@ function restArguments(func, startIndex) {
         return func.apply(this, args);
     };
 };
-function debounce(func, wait, immediate) {
-    let timer = 0;
+// debounce：是在最后执行一次。
+export default function debounce(func, wait, immediate) {
+    let timer = 0, result;
 
-    var debounced =
+    const debounced = function (args) {
+        if (timer) clearTimeout(timer);
+        let rest = Array.prototype.slice.call(args);
+        if (immediate) {
+            var callnow = !timer;
+            timer = setTimeout(() => {
+                func.call(this, rest)
+            }, wait);
+            if (callnow) {
+                result = func.call(this, rest)
+            }
+        } else {
+            timer = setTimeout(() => {
+                func.call(this, rest)
+            }, wait);
+        }
+        return result;
+    };
+    debounced.cancel = function () {
+        clearTimeout(timer)
+    };
+    return debounced;
 }

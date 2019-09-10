@@ -8,43 +8,35 @@
 
 </body>
 <script>
-    function restArguments(func, startIndex) {
-        console.log('func.length', func.length);
-        console.log(startIndex);
-        console.log(startIndex == null);
-        startIndex = startIndex == null ? func.length - 1 : +startIndex;
-        console.log('startIndex', startIndex);
-        return function() {
-            console.log(arguments);
-            console.log('startIndex', startIndex);
-            var length = Math.max(arguments.length - startIndex, 0),
-                rest = Array(length),
-                index = 0;
+    function debounce(func, wait, immediate) {
+        let timer = 0, result;
 
-            for (; index < length; index++) {
-                rest[index] = arguments[index + startIndex];
+        const debounced = function (args) {
+            if (timer) clearTimeout(timer);
+            let rest = Array.prototype.slice.call(args);
+            if (immediate) {
+                var callnow = !timer;
+                timer = setTimeout(() => {
+                    func.call(this, rest)
+                }, wait);
+                if (callnow) {
+                    result = func.call(this, rest)
+                }
+            } else {
+                timer = setTimeout(() => {
+                    func.call(this, rest)
+                }, wait);
             }
-            console.log('rest', rest);
-            console.log('startIndex', startIndex);
-            switch (startIndex) {
-                case 0: return func.call(this, rest);
-                case 1: return func.call(this, arguments[0], rest);
-                case 2: return func.call(this, arguments[0], arguments[1], rest);
-            }
-            var args = Array(startIndex + 1);
-            for (index = 0; index < startIndex; index++) {
-                args[index] = arguments[index];
-            }
-            args[startIndex] = rest;
-            console.log(args);
-            return func.apply(this, args);
         };
-    };
-
-    function add(a, b, c) {
-        console.log(a, b, c);
-        console.log(a + b);
+        debounced.cancel = function () {
+            clearTimeout(timer)
+        };
+        return debounced;
     }
-    restArguments(add)();
+
+    function func() {
+        console.log('我是test');
+    }
+    window.onresize = debounce(func, 1000, true);
 </script>
 </html>
