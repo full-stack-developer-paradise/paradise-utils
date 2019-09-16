@@ -4,7 +4,26 @@
 
 * debounce
 
+```javascript
+import Utils from 'paradise-utils';
+Utils.debounce(func, wait, immediate);
+```
+| 参数 | 说明          |
+| ------ | -------------- |
+| func | 定义的函数 |
+| wait | 等待时长 |
+| immediate | 是否立即执行 |
+
 * throttle
+
+```javascript
+import Utils from 'paradise-utils';
+Utils.throttle(func, wait, immediate);
+```
+| 参数 | 说明          |
+| ------ | -------------- |
+| func | 定义的函数 |
+| wait | 间隔时长 |
 
 * pubsub
 
