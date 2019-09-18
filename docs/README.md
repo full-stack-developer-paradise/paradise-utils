@@ -26,6 +26,17 @@ Utils.throttle(func, wait, immediate);
 | wait | 间隔时长 |
 
 * pubsub
+```javascript
+import Utils from 'paradise-utils';
+
+// 绑定一个事件名为event的自定义事件
+Utils.pubsub.subscribe('event', function (data) {
+   console.log(data);
+});
+
+// 触发事件名为event的自定义事件
+Utils.pubsub.notify('event', 123);
+```
 
 * path
 
