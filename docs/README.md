@@ -29,6 +29,8 @@ Utils.throttle(func, wait, immediate);
 
 * path
 
+* form
+
 ### 2，polyfill
 
 一个shim是一个库,它将一个新的API引入到一个旧的环境中,而且仅靠旧环境中已有的手段实现
