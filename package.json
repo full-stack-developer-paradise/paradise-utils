@@ -22,6 +22,6 @@
   "homepage": "https://github.com/full-stack-developer-paradise/paradise-utils#readme",
   "devDependencies": {
     "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7"
+    "webpack-cli": "^3.3.12"
   }
 }
